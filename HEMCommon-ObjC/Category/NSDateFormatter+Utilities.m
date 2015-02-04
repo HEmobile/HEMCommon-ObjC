@@ -23,10 +23,17 @@
 }
 
 - (NSDate *)hem_dateFromString:(NSString *)string
-                    withFormat:(NSString *)format
+                        format:(NSString *)format
 {
     self.dateFormat = format;    
     return [self dateFromString:string];
+}
+
+- (NSString *)hem_stringFromDate:(NSDate *)date
+                          format:(NSString *)format
+{
+    self.dateFormat = format;
+    return [self stringFromDate:date];
 }
 
 @end

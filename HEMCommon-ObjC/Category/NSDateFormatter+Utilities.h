@@ -27,6 +27,18 @@
  *          method cannot parse the string, it will return nil.
  */
 - (NSDate *)hem_dateFromString:(NSString *)string
-                    withFormat:(NSString *)format;
+                        format:(NSString *)format;
+
+/**
+ *  Returns a string representation for a given date based on a given date format.
+ *
+ *  @param date The date to parse.
+ *  @param format The format used to parse.
+ *
+ *  @return A string representation of date interpreted using the given format. If this
+ *          method cannot parse the string, it will return nil.
+ */
+- (NSString *)hem_stringFromDate:(NSDate *)date
+                          format:(NSString *)format;
 
 @end
