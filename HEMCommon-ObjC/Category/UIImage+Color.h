@@ -10,6 +10,13 @@
 
 @interface UIImage (Color)
 
+/**
+ *  Returns an UIImage instance with a given color.
+ *
+ *  @param color given color used to fill the UIImage instance.
+ *
+ *  @return UIImage instance with a given color.
+ */
 + (UIImage *)hem_imageWithColor:(UIColor *)color;
 
 @end
