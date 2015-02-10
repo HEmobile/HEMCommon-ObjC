@@ -15,8 +15,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.platform     = :ios, '7.0'
 
-  s.source_files = 'HEMCommon-ObjC/**/*.{h,m}'
+  s.source_files = 'HEMCommon-ObjC/Category/**/*.{h,m}', 'HEMCommon-ObjC/Cell/**/*.{h,m}', 'HEMCommon-ObjC/Controller/**/*.{h,m}', 'HEMCommon-ObjC/Network/**/*.{h,m}'
 
+  s.dependency 'Masonry'
   s.dependency 'AFNetworking'
 
 end
