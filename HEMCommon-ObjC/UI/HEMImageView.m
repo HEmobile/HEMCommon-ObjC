@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 HE:mobile. All rights reserved.
 //
 
-#import "HEMRoundedImageView.h"
+#import "HEMImageView.h"
 
 @implementation HEMRoundedImageView
 
