@@ -8,7 +8,7 @@
 
 #import "HEMView.h"
 
-@implementation HEMRoundedView
+@implementation HEMView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

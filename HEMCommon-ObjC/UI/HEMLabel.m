@@ -36,6 +36,7 @@
 {
     self.uppercaseText = NO;
     self.lowercaseText = NO;
+    self.capitalizedText = NO;
 }
 
 - (void)setUppercaseText:(BOOL)uppercaseText
