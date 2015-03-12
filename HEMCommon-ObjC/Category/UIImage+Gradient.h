@@ -10,6 +10,19 @@
 
 @interface UIImage (Gradient)
 
-+ (UIImage *)hem_gradientImageFromColors:(NSArray *)colors vertical:(BOOL)isVertical opacity:(float)opacity frame:(CGRect)frame;
+/**
+ *  Generates an UIImage instance with a gradient background.
+ *
+ *  @param colors     Array of colors used to make the gradient effect. (Left->Right, Top->Bottom)
+ *  @param isVertical Boolean indicating if the gradient will be vertical or horizontal.
+ *  @param opacity    Opacity value.
+ *  @param frame      Image frame.
+ *
+ *  @return UIImage instance.
+ */
++ (UIImage *)hem_gradientImageFromColors:(NSArray *)colors
+                                vertical:(BOOL)isVertical
+                                 opacity:(float)opacity
+                                   frame:(CGRect)frame;
 
 @end

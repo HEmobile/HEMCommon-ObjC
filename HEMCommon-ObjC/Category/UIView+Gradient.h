@@ -10,8 +10,32 @@
 
 @interface UIView (Gradient)
 
+/**
+ *  Define the background of an UIView using a gradient effect.
+ *
+ *  @param colors Array of colors used to make the gradient effect. (Left->Right, Top->Bottom)
+ */
 - (void)hem_setGradientBackgroundWithColors:(NSArray *)colors;
-- (void)hem_setGradientBackgroundWithColors:(NSArray *)colors vertical:(BOOL)isVertical;
-- (void)hem_setGradientBackgroundWithColors:(NSArray *)colors vertical:(BOOL)isVertical opacity:(float)opacity;
+
+/**
+ *  Define the background of an UIView using a gradient effect.
+ *
+ *  @param colors     Array of colors used to make the gradient effect. (Left->Right, Top->Bottom)
+ *  @param isVertical Boolean indicating if the gradient will be vertical or horizontal.
+ */
+- (void)hem_setGradientBackgroundWithColors:(NSArray *)colors
+                                   vertical:(BOOL)isVertical;
+
+
+/**
+ *  Define the background of an UIView using a gradient effect.
+ *
+ *  @param colors     Array of colors used to make the gradient effect. (Left->Right, Top->Bottom)
+ *  @param isVertical Boolean indicating if the gradient will be vertical or horizontal.
+ *  @param opacity    Opacity value.
+ */
+- (void)hem_setGradientBackgroundWithColors:(NSArray *)colors
+                                   vertical:(BOOL)isVertical
+                                    opacity:(float)opacity;
 
 @end
