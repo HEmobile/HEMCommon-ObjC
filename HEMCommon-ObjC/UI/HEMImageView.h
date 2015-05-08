@@ -11,7 +11,7 @@
 IB_DESIGNABLE
 @interface HEMImageView : UIImageView
 
-@property (nonatomic) IBInspectable CGFloat radius;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
 @property (nonatomic) IBInspectable CGFloat borderWidth;
 @property (nonatomic) IBInspectable UIColor *borderColor;
 

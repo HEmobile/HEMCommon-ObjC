@@ -34,17 +34,19 @@
 
 - (void)commonInit
 {
-    self.radius = 0.0f;
-    self.borderColor = [UIColor clearColor];
-    self.borderWidth = 0.0f;
+    self.cornerRadius = 0.0f;
+    self.borderColor  = [UIColor clearColor];
+    self.borderWidth  = 0.0f;
+    
+    self.layer.masksToBounds = YES;
 }
 
-- (CGFloat)radius
+- (CGFloat)cornerRadius
 {
     return self.layer.cornerRadius;
 }
 
-- (void)setRadius:(CGFloat)radius {
+- (void)setCornerRadius:(CGFloat)radius {
     self.layer.cornerRadius = radius;
 }
 
