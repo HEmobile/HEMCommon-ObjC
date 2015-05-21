@@ -1,6 +1,6 @@
 {
   "name": "HEMCommon-ObjC",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "summary": "Common classes for iOS development in HE:mobile",
   "homepage": "https://github.com/HEmobile/HEMCommon-ObjC",
   "license": "MIT",
@@ -40,7 +40,11 @@
       "name": "UI",
       "source_files": "HEMCommon-ObjC/UI/**/*.{h,m}",
       "dependencies": { 
-        "JVFloatLabeledTextField": []
+        "JVFloatLabeledTextField": [],
+        "CRToast": [],
+        "MRProgress": [],
+        "MMMaterialDesignSpinner": [],
+        "GSIndeterminateProgressBar": []
       }
     }
   ],
