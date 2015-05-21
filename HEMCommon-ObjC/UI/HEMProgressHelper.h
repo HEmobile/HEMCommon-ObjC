@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HEMProgressHelper : UIView
+@interface HEMProgressHelper : NSObject
 
-#pragma mark - 
+#pragma mark - Options
+
+FOUNDATION_EXPORT NSString * const HEMPHHUDLineWidth;
+FOUNDATION_EXPORT NSString * const HEMPHHUDProgressSize;
+FOUNDATION_EXPORT NSString * const HEMPHHUDProgressTintColor;
+FOUNDATION_EXPORT NSString * const HEMPHNavigationBarProgressTintColor;
+
++ (void)setConfiguration:(NSDictionary *)configuration;
+
+#pragma mark - HUD
 
 + (void)showLoadingView;
 
@@ -40,7 +49,7 @@
 
 + (void)dismissLoadingView;
 
-#pragma mark -
+#pragma mark - Navigation Bar Progress
 
 + (void)showIndeterminateProgressInNavigationBar:(UINavigationBar *)navigationBar;
 

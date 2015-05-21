@@ -13,7 +13,16 @@
 
 #import "HEMProgressHelper.h"
 
+#pragma mark - Options
+
+NSString * const HEMPHHUDLineWidth                      = @"kProgressLineWidth";
+NSString * const HEMPHHUDProgressSize                   = @"kProgressSize";
+NSString * const HEMPHHUDProgressTintColor              = @"kProgressTintColor";
+NSString * const HEMPHNavigationBarProgressTintColor    = @"kNavigationBarProgressTintColor";
+
 @interface HEMProgressHelper ()
+
+@property (nonatomic, strong) NSDictionary *configuration;
 
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) GSIndeterminateProgressView *progressView;
@@ -51,6 +60,41 @@
     return mainView;
 }
 
++ (MMMaterialDesignSpinner *)createSpinner
+{
+    NSDictionary *configuration = [self sharedInstance].configuration;
+    
+    MMMaterialDesignSpinner *spinner = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    
+    if (configuration) {
+        UIColor *color = configuration[HEMPHHUDProgressTintColor];
+        BOOL optionIsValid = color && [color isKindOfClass:[UIColor class]];
+        if (optionIsValid) {
+            spinner.tintColor = color;
+        }
+        
+        CGSize size = [configuration[HEMPHHUDProgressSize] CGSizeValue];
+        if (!CGSizeEqualToSize(size, CGSizeZero)) {
+            spinner.frame = CGRectMake(0, 0, size.width, size.height);
+        }
+        
+        CGFloat lineWidth = [configuration[HEMPHHUDLineWidth] floatValue];
+        spinner.lineWidth = lineWidth > 0 ? lineWidth : 2.0f;
+    }
+    
+    
+    [spinner startAnimating];
+    
+    return spinner;
+}
+
+#pragma mark - Options
+
++ (void)setConfiguration:(NSDictionary *)dictionary
+{
+    [self sharedInstance].configuration = dictionary;
+}
+
 #pragma mark - MRProgress
 
 + (void)showLoadingView
@@ -60,8 +104,7 @@
 
 + (void)showLoadingViewWithTitle:(NSString *)title
 {
-    UIView *topView = [self topView];
-    [self showLoadingViewWithTitle:title inView:topView];
+    [self showLoadingViewWithTitle:title inView:[self topView]];
 }
 
 + (void)showLoadingViewWithTitle:(NSString *)title
@@ -119,27 +162,21 @@
                       blockingUI:(BOOL)blockingUI
 {
     if (![self sharedInstance].isShowingProgress) {
-        [self sharedInstance].topView = view;
-        
-        MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:view
-                                                                                 title:title
-                                                                                  mode:MRProgressOverlayViewModeCustom
-                                                                              animated:YES];
-        
-        overlayView.userInteractionEnabled = blockingUI;
-        
-        // custom spinner
-        MMMaterialDesignSpinner *spinner = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectMake(20, 20, 20, 20)];
-        spinner.lineWidth = 2.0f;
-        [spinner startAnimating];
-        
-        overlayView.modeView = spinner;
+        MRProgressOverlayView *overlayView  = [[MRProgressOverlayView alloc] init];
+        overlayView.mode                    = MRProgressOverlayViewModeCustom;
+        overlayView.titleLabelText          = title;
+        overlayView.modeView                = [self createSpinner];
+        overlayView.userInteractionEnabled  = blockingUI;
         
         if (color) {
             overlayView.backgroundColor = color;
         }
         
-        [self sharedInstance].numberOfAlerts = 1;
+        [view addSubview:overlayView];
+        [overlayView show:YES];
+        
+        [self sharedInstance].topView         = view;
+        [self sharedInstance].numberOfAlerts  = 1;
         [self sharedInstance].showingProgress = YES;
     }
     else {
@@ -163,9 +200,20 @@
 + (void)showIndeterminateProgressInNavigationBar:(UINavigationBar *)navigationBar
 {
     if (![self sharedInstance].progressView) {
+        NSDictionary *configuration = [self sharedInstance].configuration;
+        
         [self sharedInstance].progressView = [[GSIndeterminateProgressView alloc] initWithFrame:CGRectMake(0, navigationBar.frame.size.height, navigationBar.frame.size.width, 3)];
         [self sharedInstance].progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         [self sharedInstance].progressView.hidesWhenStopped = YES;
+        
+        if (configuration) {
+            UIColor *color = configuration[HEMPHNavigationBarProgressTintColor];
+            BOOL optionIsValid = color && [color isKindOfClass:[UIColor class]];
+            if (optionIsValid) {
+                [self sharedInstance].progressView.progressTintColor = color;
+            }
+        }
+        
         [navigationBar addSubview:[self sharedInstance].progressView];
     }
     
