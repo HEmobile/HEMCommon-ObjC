@@ -164,7 +164,7 @@ NSString * const HEMPHNavigationBarProgressTintColor    = @"kNavigationBarProgre
     if (![self sharedInstance].isShowingProgress) {
         MRProgressOverlayView *overlayView  = [[MRProgressOverlayView alloc] init];
         overlayView.mode                    = MRProgressOverlayViewModeCustom;
-        overlayView.titleLabelText          = title;
+        overlayView.titleLabelText          = title ? title : @"";
         overlayView.modeView                = [self createSpinner];
         overlayView.userInteractionEnabled  = blockingUI;
         
