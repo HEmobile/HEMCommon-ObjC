@@ -7,27 +7,15 @@
 //
 
 #import "NSNumberFormatter+Currency.h"
+#import "NSNumberFormatter+Utilities.h"
 
 @implementation NSNumberFormatter (Currency)
-
-+ (instancetype)hem_cachedNumberFormatter
-{
-    static NSNumberFormatter *instance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[NSNumberFormatter alloc] init];
-        instance.numberStyle = NSNumberFormatterCurrencyStyle;
-    });
-    
-    return instance;
-}
 
 + (NSString *)hem_stringFromValue:(NSNumber *)value
                withCurrencySymbol:(NSString *)currencySymbol
                  localeIdentifier:(NSString *)localeIdentifier;
 {
-    NSNumberFormatter *currencyFormatter = [self hem_cachedNumberFormatter];
+    NSNumberFormatter *currencyFormatter = [NSNumberFormatter hem_cachedNumberFormatter];
     currencyFormatter.locale = [NSLocale localeWithLocaleIdentifier:localeIdentifier];
     currencyFormatter.currencySymbol = currencySymbol;
 
