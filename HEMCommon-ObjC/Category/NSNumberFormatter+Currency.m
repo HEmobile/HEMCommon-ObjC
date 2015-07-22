@@ -15,8 +15,9 @@
                withCurrencySymbol:(NSString *)currencySymbol
                  localeIdentifier:(NSString *)localeIdentifier;
 {
-    NSNumberFormatter *currencyFormatter = [NSNumberFormatter hem_cachedNumberFormatter];
-    currencyFormatter.locale = [NSLocale localeWithLocaleIdentifier:localeIdentifier];
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter hem_cachedNumberFormatter] copy];
+    currencyFormatter.locale         = [NSLocale localeWithLocaleIdentifier:localeIdentifier];
+    currencyFormatter.numberStyle    = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencySymbol = currencySymbol;
 
     return [currencyFormatter stringFromNumber:value];

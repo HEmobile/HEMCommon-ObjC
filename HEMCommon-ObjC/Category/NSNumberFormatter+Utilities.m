@@ -17,7 +17,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[NSNumberFormatter alloc] init];
-        instance.numberStyle = NSNumberFormatterCurrencyStyle;
     });
     
     return instance;
