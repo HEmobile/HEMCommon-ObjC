@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HEMGenericOption.h"
 
-@class HEMGenericOption;
 @interface HEMGenericOptionHelper : NSObject
 
 + (NSArray *)optionsFromArray:(NSArray *)objects
