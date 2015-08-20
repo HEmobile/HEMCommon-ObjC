@@ -1,9 +1,9 @@
 //
 //  HEMPickerHelper.m
-//  Pods
+//  HEMCommon-ObjC
 //
 //  Created by Marcilio Junior on 8/20/15.
-//
+//  Copyright (c) 2015 HE:mobile. All rights reserved.
 //
 
 #import "HEMPickerHelper.h"
@@ -52,12 +52,6 @@
     pickerView.frame = CGRectMake(0, CGRectGetHeight(toolbar.frame), CGRectGetMaxX(rect), CGRectGetHeight(pickerView.frame));
     [pickerContainer addSubview:pickerView];
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.25];
-    [UIView setAnimationDelegate:self];
-    
-    pickerContainer.frame = CGRectMake(0, CGRectGetHeight(rect) - CGRectGetHeight(pickerContainer.frame), CGRectGetMaxX(rect), CGRectGetHeight(pickerContainer.frame));
-    
     return pickerContainer;
 }
 
@@ -70,7 +64,11 @@
     }
     
     [[UIApplication sharedApplication].keyWindow addSubview:picker];
-    [UIView commitAnimations];
+    
+    CGRect rect = [UIApplication sharedApplication].keyWindow.bounds;
+    [UIView animateWithDuration:0.25 animations:^{
+        picker.frame = CGRectMake(0, CGRectGetHeight(rect) - CGRectGetHeight(picker.frame), CGRectGetMaxX(rect), CGRectGetHeight(picker.frame));
+    }];
 }
 
 + (void)hidePicker

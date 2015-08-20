@@ -1,9 +1,9 @@
 //
-//  HEMKeyboardHelper.m
-//  Pods
+//  HEMPickerHelper.m
+//  HEMCommon-ObjC
 //
 //  Created by Marcilio Junior on 8/20/15.
-//
+//  Copyright (c) 2015 HE:mobile. All rights reserved.
 //
 
 #import "HEMKeyboardHelper.h"
