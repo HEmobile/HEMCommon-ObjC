@@ -35,7 +35,7 @@
     CGRect rect  = [UIApplication sharedApplication].keyWindow.bounds;
     HEMPickerContainer *pickerContainer = [[HEMPickerContainer alloc] init];
     
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(rect), 0)];
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(rect), 200)];
     
     pickerView.backgroundColor = [UIColor whiteColor];
     pickerView.dataSource = controller;
