@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, HEMBaseClientEnv) {
     HEMBaseClientEnvProduction = 1
 };
 
-@interface HEMBaseClient : AFHTTPRequestOperationManager
+@interface HEMBaseClient : AFHTTPSessionManager
 
 /**
  *  Set the base URL for production and test environment.
